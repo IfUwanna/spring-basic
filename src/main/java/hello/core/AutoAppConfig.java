@@ -1,5 +1,8 @@
 package hello.core;
 
+import hello.core.member.MemberRepository;
+import hello.core.member.MemoryMemberRepository;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
@@ -20,5 +23,8 @@ import org.springframework.context.annotation.FilterType;
         excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = Configuration.class)
 ) // 예제를 위해 @Configuration 달린 클래스는 스캔에서 제외
 public class AutoAppConfig {
-
+    @Bean(name = "memoryMemberRepository")  // 같은이름으로 중복되는 수동 Bean이 자동 Bean을 오버라이드함!!( 기본값은 false)
+    public MemberRepository memberRepository() {
+        return new MemoryMemberRepository();
+    }
 }
