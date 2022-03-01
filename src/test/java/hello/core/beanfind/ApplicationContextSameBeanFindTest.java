@@ -30,6 +30,15 @@ public class ApplicationContextSameBeanFindTest {
 
     AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(SameBeanConfig.class);
 
+    /*
+    ac.getBean("memberService", MemberService.class);  //이름으로 조회
+    ac.getBean(MemberService.class); //클래스 타입만 가지고 조회 가능
+    ac.getBean("memberService", MemberServiceImpl.class); // 동적 인스턴스 타입으로 조회
+    ac.getBean(MemberRepository.class); // 타입 조회시 동일타입 Bean 둘 이상이면 오류
+    ac.getBean("memberRepository1", MemberRepository.class); //이름 명시하여 해결
+    Map<String, MemberRepository> beansOfType = ac.getBeansOfType(MemberRepository.class); // 특정타입 모두 조회
+    * */
+
     @Test
     @DisplayName("타입으로 조회시 같은 타입이 둘 이상 있으면, 중복 오류 발생")
     void findBeanByTypeDuplicate() {
