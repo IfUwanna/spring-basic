@@ -6,6 +6,8 @@ import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * packageName    : hello.core.order
@@ -18,11 +20,13 @@ import hello.core.member.MemoryMemberRepository;
  * -----------------------------------------------------------
  * 2022/03/01        Jihun Park       최초 생성
  */
+@Component
 public class OrderServiceImpl implements OrderService {
 
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy; // 인터페이스만 의존하게 변경 DIP! 그냥쓰면 NPE
 
+    @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
