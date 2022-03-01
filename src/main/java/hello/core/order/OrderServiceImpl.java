@@ -23,11 +23,29 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderServiceImpl implements OrderService {
 
-    private final MemberRepository memberRepository;
-    private final DiscountPolicy discountPolicy; // 인터페이스만 의존하게 변경 DIP! 그냥쓰면 NPE
-
+    //@Autowired // 3. 필드주입
+    private  MemberRepository memberRepository;
+    //@Autowired
+    private  DiscountPolicy discountPolicy; // 인터페이스만 의존하게 변경 DIP! 그냥쓰면 NPE
+/*
+    @Autowired  2.수정자 주
+    public void setMemberRepository(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
     @Autowired
+    public void setDiscountPolicy(DiscountPolicy discountPolicy) {
+        this.discountPolicy = discountPolicy;
+    }
+    */
+    //@Autowired // 생성자가 하나일때는 자동으로 붙여준다.  1. 생성자 주입
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
+
+    //4. 일반 메서드
+    @Autowired
+    public void init(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
