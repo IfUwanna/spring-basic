@@ -1,9 +1,6 @@
 package hello.core.beanfind;
 
-import hello.core.AppConfig;
 import hello.core.member.MemberRepository;
-import hello.core.member.MemberService;
-import hello.core.member.MemberServiceImpl;
 import hello.core.member.MemoryMemberRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -42,7 +39,7 @@ public class ApplicationContextSameBeanFindTest {
     @Test
     @DisplayName("타입으로 조회시 같은 타입이 둘 이상 있으면, 중복 오류 발생")
     void findBeanByTypeDuplicate() {
-        //MemberRepository bean = ac.getBean(MemberRepository.class);
+        MemberRepository bean = ac.getBean(MemberRepository.class);
     }
 
     @Test
