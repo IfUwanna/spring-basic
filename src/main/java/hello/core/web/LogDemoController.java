@@ -25,14 +25,15 @@ import javax.servlet.http.HttpServletRequest;
 public class LogDemoController {
 
     private final LogDemoService logDemoService;
-    private final ObjectProvider<MyLogger> myLoggerProvider;  //bean에 주입할때는 scope가 request기 때문에 없다.
+    private final MyLogger myLogger;  //bean에 주입할때는 scope가 request기 때문에 없다.
+    //private final ObjectProvider<MyLogger> myLoggerProvider;  //bean에 주입할때는 scope가 request기 때문에 없다.
     //DL
 
     @RequestMapping("log-demo")
     @ResponseBody
     public String logDemo(HttpServletRequest request) {
         String requestURL = request.getRequestURL().toString();
-        MyLogger myLogger = myLoggerProvider.getObject();
+        //MyLogger myLogger = myLoggerProvider.getObject();
         myLogger.setRequestURL(requestURL);
         myLogger.log("controller test");
         logDemoService.logic("testId");
